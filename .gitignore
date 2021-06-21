@@ -1,0 +1,6 @@
+.rpt2_cache/*
+bin/js/bundle.js
+.laya/
+.DS_Store
+release/*
+node_modules/*
