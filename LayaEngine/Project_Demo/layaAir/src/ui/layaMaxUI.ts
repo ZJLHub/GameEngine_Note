@@ -12,4 +12,25 @@ export module ui {
         }
     }
     REG("ui.JoyStickUI",JoyStickUI);
+    export class loadUI extends Laya.Scene {
+		public bg:Laya.Image;
+		public proYellow:Laya.Image;
+		public proBlue:Laya.Image;
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.loadScene("load");
+        }
+    }
+    REG("ui.loadUI",loadUI);
+    export class tipSceneUI extends Laya.Scene {
+		public img_TipsLab:Laya.Image;
+		public labTips:Laya.Label;
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.loadScene("tipScene");
+        }
+    }
+    REG("ui.tipSceneUI",tipSceneUI);
 }

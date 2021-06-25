@@ -4,17 +4,19 @@ export enum SceneTag{
 }
 export type Scene3D = {
     url:string,
-    ctr:any
+    ctr:any,
+    constructParams?: Array<any>;
+    propertyParams?: Object;
 }
 export default class SceneConfig {
-    private _instance:SceneConfig;
-    public get instance(){
+    private static _instance:SceneConfig;
+    public static get instance(){
         if(!this._instance) this._instance = new SceneConfig();
         return this._instance;
     }
     private _sceneConfig:{[tag:number]:Scene3D} = {
         [SceneTag.testScene]:{
-            url:"bin/subpackage/LayaScene_TestScene/Conventional/TestScene.ls",
+            url:"subpackage/LayaScene_TestScene/Conventional/TestScene.ls",
             ctr:TestSceneController
         }
     }
