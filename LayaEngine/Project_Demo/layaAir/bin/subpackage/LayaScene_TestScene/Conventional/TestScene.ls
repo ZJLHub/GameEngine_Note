@@ -9,38 +9,38 @@
 				0.227,
 				0.259
 			],
-			"reflectionDecodingFormat":1,
+			"reflectionDecodingFormat":0,
 			"reflection":"Assets/Scenes/TestSceneGIReflection.ltcb",
 			"reflectionIntensity":1,
 			"ambientMode":1,
 			"ambientSphericalHarmonics":[
-				0.1678832,
-				-0.01659191,
-				-0.01137981,
-				0.006569805,
-				0.004985191,
-				-0.008635063,
-				0.009734803,
-				-0.01030055,
-				0.02333596,
-				0.2107358,
-				0.02701625,
-				-0.01888622,
-				0.01090361,
-				0.008416954,
-				-0.01457898,
-				0.0141634,
-				-0.01572326,
-				0.03351197,
-				0.2899402,
-				0.1099657,
-				-0.03480919,
-				0.02009369,
-				0.01630444,
-				-0.02824396,
-				0.01814259,
-				-0.02374605,
-				0.04080017
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0
 			],
 			"ambientSphericalHarmonicsIntensity":1,
 			"lightmaps":[],
@@ -145,11 +145,69 @@
 						"isTrigger":false
 					}
 				],
-				"child":[]
+				"child":[
+					{
+						"type":"MeshSprite3D",
+						"instanceID":2,
+						"props":{
+							"name":"Cylinder",
+							"active":true,
+							"isStatic":false,
+							"layer":0,
+							"position":[
+								0,
+								0,
+								0.536
+							],
+							"rotation":[
+								-0.7071068,
+								0,
+								0,
+								-0.7071068
+							],
+							"scale":[
+								0.5,
+								0.1,
+								1
+							],
+							"meshPath":"Library/unity default resources-Cylinder.lm",
+							"enableRender":true,
+							"materials":[
+								{
+									"type":"Laya.BlinnPhongMaterial",
+									"path":"Resources/unity_builtin_extra.lmat"
+								}
+							]
+						},
+						"components":[
+							{
+								"type":"PhysicsCollider",
+								"restitution":0,
+								"friction":0.5,
+								"rollingFriction":0,
+								"shapes":[
+									{
+										"type":"CapsuleColliderShape",
+										"center":[
+											5.960464E-08,
+											0,
+											-8.940697E-08
+										],
+										"radius":0.5000001,
+										"height":2,
+										"orientation":1
+									}
+								],
+								"isTrigger":false
+							}
+						],
+						"child":[]
+					}
+				]
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":2,
+				"instanceID":3,
 				"props":{
 					"name":"Plane",
 					"active":true,
@@ -167,9 +225,9 @@
 						-1
 					],
 					"scale":[
+						10,
 						1,
-						1,
-						1
+						10
 					],
 					"meshPath":"Library/unity default resources-Plane.lm",
 					"enableRender":true,
@@ -197,7 +255,7 @@
 				"child":[
 					{
 						"type":"MeshSprite3D",
-						"instanceID":3,
+						"instanceID":4,
 						"props":{
 							"name":"Cylinder",
 							"active":true,
@@ -206,7 +264,7 @@
 							"position":[
 								0,
 								0,
-								2.92
+								1.06
 							],
 							"rotation":[
 								-0.7071068,
@@ -215,8 +273,8 @@
 								-0.7071068
 							],
 							"scale":[
-								1,
-								1,
+								0.1,
+								0.1,
 								1
 							],
 							"meshPath":"Library/unity default resources-Cylinder.lm",
@@ -232,14 +290,14 @@
 					},
 					{
 						"type":"MeshSprite3D",
-						"instanceID":4,
+						"instanceID":5,
 						"props":{
 							"name":"Cylinder (1)",
 							"active":true,
 							"isStatic":false,
 							"layer":0,
 							"position":[
-								-4.16,
+								-0.52,
 								0,
 								0.19
 							],
@@ -250,8 +308,8 @@
 								-0.5
 							],
 							"scale":[
-								1,
-								1,
+								0.1,
+								0.1,
 								1
 							],
 							"meshPath":"Library/unity default resources-Cylinder.lm",
@@ -269,7 +327,7 @@
 			},
 			{
 				"type":"Camera",
-				"instanceID":5,
+				"instanceID":6,
 				"props":{
 					"name":"Main Camera",
 					"active":true,

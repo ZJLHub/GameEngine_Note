@@ -1,3 +1,4 @@
+import GameEvent, { GameEV } from "../const/GameConst";
 import L3D from "../util/L3D";
 export type joyPoint = {
     x:number;
@@ -16,7 +17,7 @@ export default class JoyStick extends Laya.Script {
         this._joyListenBox = this._root.getChildByName("JoyListenBox") as Laya.Box;
         this._joyPanel = this._root.getChildByName("JoyPanel") as Laya.Box;
         this._point = this._joyPanel.getChildByName("point") as Laya.Image;
-        console.log("JoyStick",this._root);
+        // console.log("JoyStick",this._root);
     }
 
     onEnable() {
@@ -37,27 +38,31 @@ export default class JoyStick extends Laya.Script {
     }
     private _onMouseMove() {
         let jp = this._getJoyPoint();
-        this._point.x = jp.x;
-        this._point.y = jp.y;
+        this._point.x = -jp.x + 125;
+        this._point.y = -jp.y + 125;
+        // console.log("jp:::",jp);
+        Laya.stage.event(GameEV.Joy_Move);
+        GameEvent.ev(GameEV.Joy_Move,jp);
     }
     private _onMouseUp() {
-        this._joyPanel.centerX = 0;
-        this._joyPanel.bottom = 200;
+        this._joyPanel.x = 375;
+        this._joyPanel.y = Laya.stage.height*0.8;
         this._point.x = 125;
         this._point.y = 125;
+        GameEvent.ev(GameEV.Joy_End,null);
     }
 
     private _getJoyPoint() {//先用V3顶着先哈
         let dir: Laya.Vector3 = new Laya.Vector3();
         let panelV3:Laya.Vector3 = new Laya.Vector3(this._joyPanel.x, 0, this._joyPanel.y);
-        let pointV3:Laya.Vector3 = new Laya.Vector3(Laya.MouseManager.instance.mouseX, 0, Laya.MouseManager.instance.mouseX);
+        let pointV3:Laya.Vector3 = new Laya.Vector3(Laya.MouseManager.instance.mouseX, 0, Laya.MouseManager.instance.mouseY);
         Laya.Vector3.subtract(panelV3,pointV3, dir);
 
         let dis = Laya.Vector3.distance(panelV3,pointV3);
+        
         if(dis>this._radius){
-            let nor:Laya.Vector3 = new Laya.Vector3();
-            Laya.Vector3.normalize(dir,nor);
-            Laya.Vector3.scale(nor,this._radius,nor);
+            Laya.Vector3.normalize(dir,dir);
+            Laya.Vector3.scale(dir,this._radius,dir);
         }
         let joyPoint:joyPoint = {x:dir.x,y:dir.z};
         return joyPoint;
