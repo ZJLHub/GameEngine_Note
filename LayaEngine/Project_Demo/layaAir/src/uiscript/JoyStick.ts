@@ -61,7 +61,7 @@ export default class JoyStick extends Laya.Script {
         let dis = Laya.Vector3.distance(panelV3,pointV3);
         
         if(dis>this._radius){
-            Laya.Vector3.normalize(dir,dir);
+            Laya.Vector3.normalize(dir,dir); 
             Laya.Vector3.scale(dir,this._radius,dir);
         }
         let joyPoint:joyPoint = {x:dir.x,y:dir.z};
