@@ -1,8 +1,4 @@
-import SceneConfig, { SceneTag } from "./const/SceneConfig";
-import { UIScene, UIZorder } from "./const/UIConst";
 import GameConfig from "./GameConfig";
-import SceneManager from "./manager/SceneManager";
-import UIMng from "./manager/UIMng";
 class Main {
 	constructor() {
 		//根据IDE设置初始化引擎		
@@ -32,23 +28,10 @@ class Main {
 		Laya.AtlasInfoManager.enable("fileconfig.json", Laya.Handler.create(this, this.onConfigLoaded));
 	}
 
-	async onConfigLoaded() {
+	onConfigLoaded(): void {
 		//加载IDE指定的场景
-		// GameConfig.startScene && Laya.Scene.open(GameConfig.startScene);
-		let loadUI = await UIMng.instance.openUIScene(UIScene.load,UIZorder.scene);
-		SceneManager.instance.init(SceneConfig.instance.sceneConfig);
-		await this._loadScene3D();
-		loadUI.close();
-		let joy = await UIMng.instance.openUIScene(UIScene.JoyStick,UIZorder.scene);
-		joy.zOrder = 100;
-		console.log("Laya.stage::",Laya.stage);
+		GameConfig.startScene && Laya.Scene.open(GameConfig.startScene);
 	}
-
-	private async _loadScene3D(){
-		await SceneManager.instance.changeScene(SceneTag.joyDemo);
-	}
-
-
 }
 //激活启动类
 new Main();

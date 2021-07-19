@@ -23,11 +23,7 @@ export default class T3D{
     public static v3Dot(v1:Laya.Vector3,v2:Laya.Vector3){
         return v1.x*v2.x + v1.y*v2.y + v1.z*v2.z;
     }
-
-    /**叉乘 外积  向量积*/
-    public static v3Multiply(v1:Laya.Vector3,v2:Laya.Vector3){
-        return new Laya.Vector3(v1.x*v2.x,v1.y*v2.y,v1.z*v2.z);
-    }
+    
 
     /**向量的模  也是长度啦 */
     public static v3Mo(v3:Laya.Vector3){

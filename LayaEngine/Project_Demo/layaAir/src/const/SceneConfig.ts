@@ -1,8 +1,8 @@
 import TestSceneController from "../controller/TestSceneController";
 export enum SceneTag{
-    testScene = 0,
+    joyDemo = 0,
 }
-export type Scene3D = {
+export type Scene3D2D = {
     url:string,
     ctr:any,
     constructParams?: Array<any>;
@@ -14,10 +14,11 @@ export default class SceneConfig {
         if(!this._instance) this._instance = new SceneConfig();
         return this._instance;
     }
-    private _sceneConfig:{[tag:number]:Scene3D} = {
-        [SceneTag.testScene]:{
+    private _sceneConfig:{[tag:number]:Scene3D2D} = {
+        [SceneTag.joyDemo]:{
             url:"subpackage/LayaScene_TestScene/Conventional/TestScene.ls",
-            ctr:TestSceneController
+            ctr:TestSceneController,
+
         }
     }
 

@@ -1,4 +1,4 @@
-import { Scene3D, SceneTag } from "../const/SceneConfig";
+import { Scene3D2D, SceneTag } from "../const/SceneConfig";
 
 export default class SceneManager {
     private static _instance: SceneManager;
@@ -7,8 +7,8 @@ export default class SceneManager {
         return this._instance;
     }
 
-    private _sceneConfig: { [tag: number]: Scene3D } = {};
-    public init(sceneConfig: { [tag: number]: Scene3D }) {
+    private _sceneConfig: { [tag: number]: Scene3D2D } = {};
+    public init(sceneConfig: { [tag: number]: Scene3D2D }) {
         this._sceneConfig = sceneConfig;
     }
 
@@ -56,7 +56,7 @@ export default class SceneManager {
 
     //这俩货 估计就只起到对比的作用 (也就是提示使用者可以使用不同参数)
     public prepareScene(indentify: number, progress?: laya.utils.Handler, priority?: number): void;
-    public prepareScene(indentify: Scene3D, progress?: laya.utils.Handler, priority?: number): void;
+    public prepareScene(indentify: Scene3D2D, progress?: laya.utils.Handler, priority?: number): void;
     public prepareScene(indentify:any,progress: laya.utils.Handler = null, priority: number = 1):void{
         let scene = indentify;
         if (typeof indentify == "number") {
@@ -83,9 +83,14 @@ export default class SceneManager {
 
     }
 
-
+    /**
+     * 切换到目标场景
+     * @param tag 目标场景
+     * @param clearBefore 是否清除前面的场景
+     * @returns 
+     */
     public changeScene(tag:SceneTag,clearBefore:boolean = true):Promise<void>{
-        return new Promise<void>(()=>{
+        return new Promise<void>(async (reslove)=>{
             if(this._sceneHeap[tag]){
                 if(clearBefore){
                     this._sceneHeap[this._curTag].destroy();
@@ -95,9 +100,10 @@ export default class SceneManager {
                 this._sceneHeap[tag].active = true;
                 this._curTag = tag;
                 this._curScene = this._sceneHeap[tag];
-                // this._curSceneCtr = this.sce
+                reslove();
             } else {
-                this._loadScene(tag,clearBefore);
+                await this._loadScene(tag,clearBefore);
+                reslove();
             }
         });
     }
