@@ -3,6 +3,8 @@ import { UIScene, UIZorder } from "./const/UIConst";
 import GameConfig from "./GameConfig";
 import SceneManager from "./manager/SceneManager";
 import UIMng from "./manager/UIMng";
+import { myMath } from "./util/myMath";
+import T3D from "./util/T3D";
 class Main {
 	constructor() {
 		//根据IDE设置初始化引擎		
@@ -45,7 +47,14 @@ class Main {
 	}
 
 	private async _loadScene3D(){
-		await SceneManager.instance.changeScene(SceneTag.joyDemo);
+		let v1:Laya.Vector3 = new Laya.Vector3(myMath.RandomInt(2,8),myMath.RandomInt(0,5),myMath.RandomInt(1,5));
+		let v2:Laya.Vector3 = new Laya.Vector3(myMath.RandomInt(2,8),myMath.RandomInt(0,5),myMath.RandomInt(1,5));
+		let out:Laya.Vector3 = new Laya.Vector3();
+		Laya.Vector3.multiply(v1,v2,out);
+
+		console.log( v1,v2,   T3D.v3Dot(v1,v2),Laya.Vector3.dot(v1,v2),"out:::",out);
+
+		await SceneManager.instance.intoScene(SceneTag.joyDemo);
 	}
 
 

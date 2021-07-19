@@ -8,10 +8,22 @@ export default class UIMng {
         }
         return UIMng._instance;
     }
+    private static AllowMulOpen:{[UIScene:string]:number} = {
+        //#region 设置允许多次打开的场景
+        // 在实际开发过程中，场景的创建是laya编辑器完成的，emmm如果遇到允许多次打开的场景,算了，通过查询子节点确认是否允许多次打开吧-。-！！真麻烦
+        //#endregion
+
+    }
 
     private _sceneDict: { [sceneName: string]: Laya.Scene } = {};
     public scene(name: string) { return this._sceneDict[name]; }
-
+    /**
+     * 打开UI场景
+     * @param name 
+     * @param zOrder 
+     * @param data 
+     * @returns 
+     */
     public openUIScene( name: string, zOrder: number, data = null): Promise<Laya.Scene> {
 
         return new Promise((reslove) => {
@@ -53,5 +65,4 @@ export default class UIMng {
             }));
         });
     }
-
 }
