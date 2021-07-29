@@ -1,5 +1,6 @@
 import { UIScene, UIZorder } from "../const/UIConst";
 import TipsScneeCtr from "../uiscript/TipSceneScript";
+import SceneManager from "./SceneManager";
 export default class UIMng {
     private static _instance: UIMng = null;
     public static get instance(): UIMng {
@@ -8,9 +9,10 @@ export default class UIMng {
         }
         return UIMng._instance;
     }
-    private static AllowMulOpen:{[UIScene:string]:number} = {
+    private _allowMulOpen:{[UIScene:string]:number} = {
         //#region 设置允许多次打开的场景
-        // 在实际开发过程中，场景的创建是laya编辑器完成的，emmm如果遇到允许多次打开的场景,算了，通过查询子节点确认是否允许多次打开吧-。-！！真麻烦
+        // 在实际开发过程中，场景的创建是laya编辑器完成的，emmm如果遇到允许多次打开的场景,
+        //算了，通过查询子节点确认是否允许多次打开吧-。-！！真麻烦
         //#endregion
 
     }
@@ -24,15 +26,16 @@ export default class UIMng {
      * @param data 
      * @returns 
      */
-    public openUIScene( name: string, zOrder: number, data = null): Promise<Laya.Scene> {
-
+    public openUIScene( name: UIScene, zOrder: number, data = null): Promise<Laya.Scene> {
         return new Promise((reslove) => {
-            // if(this.scene(name)) {reslove(this.scene(name));return}
+            if(this.scene(name) && !this._allowMulOpen[name]) { console.error(`UI ${name} 已经存在,请查询代码逻辑!` );  reslove(this.scene(name));return}
             Laya.Scene.open(name + ".scene", false, data, Laya.Handler.create(this, (scene: Laya.Scene) => {
                 this._sceneDict[name] = scene;
                 scene.name = name;
                 this._Adapter(scene);
                 scene.zOrder = zOrder;
+                SceneManager.canvas.addChild(scene);
+                if(!this._allowMulOpen[name] && scene.getChildByName(`allowMulOpen`)) this._allowMulOpen[name] = 1;//记录可多次打开的场景
                 reslove(scene);
             }));
         });

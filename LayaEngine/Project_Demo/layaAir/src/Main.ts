@@ -37,8 +37,8 @@ class Main {
 	async onConfigLoaded() {
 		//加载IDE指定的场景
 		// GameConfig.startScene && Laya.Scene.open(GameConfig.startScene);
-		let loadUI = await UIMng.instance.openUIScene(UIScene.load,UIZorder.scene);
 		SceneManager.instance.init(SceneConfig.instance.sceneConfig);
+		let loadUI = await UIMng.instance.openUIScene(UIScene.load,UIZorder.scene);
 		await this._loadScene3D();
 		loadUI.close();
 		let joy = await UIMng.instance.openUIScene(UIScene.JoyStick,UIZorder.scene);
