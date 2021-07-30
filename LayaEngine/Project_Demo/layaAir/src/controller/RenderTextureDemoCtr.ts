@@ -31,7 +31,7 @@ export default class RenderTextureDemoCtr extends Laya.Script3D  {
         // this._mainCamera.renderTarget = this._mainRT;
 
 
-        UIMng.instance.openUIScene(UIScene.RenderTextureShow,UIZorder.scene,this._mainRT);
+        UIMng.instance.openUIScene(UIScene.RenderTextureShow,UIZorder.scene,this._rt);
     }
 
 }
