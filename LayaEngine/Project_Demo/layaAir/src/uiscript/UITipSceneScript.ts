@@ -1,6 +1,6 @@
 import { ui } from "../ui/layaMaxUI";
 
-export default class TipsScneeCtr extends Laya.Script{
+export default class UITipSceneScript extends Laya.Script{
     private _root:ui.tipSceneUI;
     private _tipsContent:string;
     public init(tipsContent:string){

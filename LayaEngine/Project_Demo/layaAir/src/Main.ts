@@ -43,7 +43,7 @@ class Main {
 		loadUI.close();
 		let joy = await UIMng.instance.openUIScene(UIScene.JoyStick,UIZorder.scene);
 		joy.zOrder = 100;
-		console.log("Laya.stage::",Laya.stage);
+		UIMng.instance.openUIScene(UIScene.SceneSelect,UIZorder.transition,SceneConfig.instance.sceneConfig,false);
 	}
 
 	private async _loadScene3D(){
@@ -53,6 +53,9 @@ class Main {
 		Laya.Vector3.multiply(v1,v2,out);
 
 		console.log( v1,v2,   T3D.v3Dot(v1,v2),Laya.Vector3.dot(v1,v2),"out:::",out);
+		let mout:Laya.Vector3 = new Laya.Vector3();
+		Laya.Vector3.multiply(v1,v2,mout);
+		console.log("Laya.Vector3.multiply(v1,v2,mout);::::",mout);
 
 		await SceneManager.instance.intoScene(SceneTag.joyDemo);
 	}

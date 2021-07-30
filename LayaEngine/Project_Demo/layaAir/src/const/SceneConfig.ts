@@ -1,3 +1,4 @@
+import RenderTextureDemoCtr from "../controller/RenderTextureDemoCtr";
 import TestSceneController from "../controller/TestSceneController";
 export type Scene3D2D = {
     url:string,
@@ -9,11 +10,14 @@ export type Scene3D2D = {
 export enum SceneTag{
     joyDemo = 0,
     AIRotate = 1,//AI 面向目标点
+    RenderTextureDemo = 2,//rt测试
 
 }
 export enum SceneUICanvas{
+    default = "default",
     joyDemoCanvas = "joyDemoCanvas",
     AIRotate = "AIRotate",
+    renderTexture = "renderTexture",
 }
 export default class SceneConfig {
     private static _instance:SceneConfig;
@@ -26,6 +30,11 @@ export default class SceneConfig {
             url:"subpackage/LayaScene_TestScene/Conventional/TestScene.ls",
             ctr:TestSceneController,
             canvas:SceneUICanvas.joyDemoCanvas
+        },
+        [SceneTag.RenderTextureDemo]:{
+            url:"subpackage/LayaScene_RenderTextureDemo/Conventional/RenderTextureDemo.ls",
+            ctr:RenderTextureDemoCtr,
+            canvas:SceneUICanvas.renderTexture
         }
     }
 

@@ -1,4 +1,5 @@
-import { Scene3D2D, SceneUICanvas, SceneTag } from "../const/SceneConfig";
+import { Scene3D2D, SceneTag } from "../const/SceneConfig";
+import UIMng from "./UIMng";
 /**
  * 20210719 ZJL 
  * 底层添加UI层 canvas 支持, 所有UI场景都会放入tag中的canvas，切换场景时，不再需要进行繁琐的UI层关闭指令
@@ -108,7 +109,7 @@ export default class SceneManager {
             } else {
                 await this._loadScene(tag, clearBefore);
             }
-            this._createCanvas(this._sceneConfig[tag].canvas);
+            UIMng.instance._intoSceneCanvas(this._sceneConfig[tag].canvas);
             reslove();
         });
     }
@@ -125,30 +126,29 @@ export default class SceneManager {
         return this._curScene;
     }
 
-    private static _canvas: Laya.Scene;
-    public static get canvas() {
-        if(!this._canvas) this._initCanvas();
-        return this._canvas;
-    }  
-    private static _initCanvas(){//初始化游戏canvas
-            let scene: Laya.Scene = new Laya.Scene(false);
-            scene.height = Laya.stage.height;
-            scene.width = Laya.stage.height;
-            scene.name = `init_canvas`;
-            Laya.stage.addChild(scene);
-            SceneManager._canvas = scene;
-    }
-    private _createCanvas(canvas: SceneUICanvas) {
-        if (SceneManager._canvas) SceneManager._canvas.close();
-        let scene: Laya.Scene = new Laya.Scene(false);
-        // scene.autoDestroyAtClosed = true;//设置在关闭时，自动对资源进行销毁，虽然我觉得不用，3d游戏UI再大也就10m左右,何况是小游戏,那算了，就不销毁吧
-        scene.height = Laya.stage.height;
-        scene.width = Laya.stage.height;
-        scene.name = canvas;
-        Laya.stage.addChild(scene);
-        SceneManager._canvas = scene;
-    }
-    //TODO 本来像着 因为2d场景都放入canvas里面了，那干脆就把UI管理一起合并在一起，但是考虑之后，还是决定只从UIMng那边获取canvas即可    
-    //TODO 我透~忽略了一个极其重要的问题，我怎么就一直想不起来，有可能场景切换时 会有 原先原先的UI不能关闭的问题  具体问题具体分析了， 但是 必须支持两个场景是同一个canvas的时候，不会对canvas进行删除再建
-
+    //#region 由于Laya的prefab有问题（scene1->scene2->prefab  prefab上的脚本无法走生命周期）,因此将canvas修整为数组形式
+    //#endregion
+    // private static _canvas: Laya.Scene;
+    // public static get canvas() {
+    //     // if(!this._canvas) this._initCanvas();
+    //     return this._canvas;
+    // }  
+    // private static _initCanvas(){//初始化游戏canvas
+    //         let scene: Laya.Scene = new Laya.Scene(false);
+    //         scene.height = Laya.stage.height;
+    //         scene.width = Laya.stage.height;
+    //         scene.name = `init_canvas`;
+    //         Laya.stage.addChild(scene);
+    //         SceneManager._canvas = scene;
+    // }
+    // private _createCanvas(canvas: SceneUICanvas) {
+    //     if (SceneManager._canvas) SceneManager._canvas.close();
+    //     let scene: Laya.Scene = new Laya.Scene(false);
+    //     // scene.autoDestroyAtClosed = true;//设置在关闭时，自动对资源进行销毁，虽然我觉得不用，3d游戏UI再大也就10m左右,何况是小游戏,那算了，就不销毁吧
+    //     scene.height = Laya.stage.height;
+    //     scene.width = Laya.stage.height;
+    //     scene.name = canvas;
+    //     Laya.stage.addChild(scene);
+    //     SceneManager._canvas = scene;
+    // }
 }

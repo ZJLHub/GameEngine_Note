@@ -23,6 +23,25 @@ export module ui {
         }
     }
     REG("ui.loadUI",loadUI);
+    export class RenderTextureShowUI extends Laya.Scene {
+		public rtImg:Laya.Image;
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.loadScene("RenderTextureShow");
+        }
+    }
+    REG("ui.RenderTextureShowUI",RenderTextureShowUI);
+    export class SceneSelectUI extends Laya.Scene {
+		public scenePanel:Laya.Panel;
+		public SceneVBox:Laya.VBox;
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.loadScene("SceneSelect");
+        }
+    }
+    REG("ui.SceneSelectUI",SceneSelectUI);
     export class tipSceneUI extends Laya.Scene {
 		public img_TipsLab:Laya.Image;
 		public labTips:Laya.Label;

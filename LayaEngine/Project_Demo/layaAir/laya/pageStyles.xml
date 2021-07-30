@@ -2,4 +2,6 @@
    <item name="JoyStick.scene" props="" ifExport="分离模式" aName=""/>
    <item name="tipScene.scene" props="" ifExport="分离模式" aName=""/>
    <item name="load.scene" props="" ifExport="分离模式" aName=""/>
+   <item name="SceneSelect.scene" props="" ifExport="分离模式" aName=""/>
+   <item name="RenderTextureShow.scene" props="" ifExport="分离模式" aName=""/>
 </page>
