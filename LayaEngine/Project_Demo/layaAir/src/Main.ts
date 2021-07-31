@@ -47,8 +47,8 @@ class Main {
 	}
 
 	private async _loadScene3D(){
-		let v1:Laya.Vector3 = new Laya.Vector3(myMath.RandomInt(2,8),myMath.RandomInt(0,5),myMath.RandomInt(1,5));
-		let v2:Laya.Vector3 = new Laya.Vector3(myMath.RandomInt(2,8),myMath.RandomInt(0,5),myMath.RandomInt(1,5));
+		let v1:Laya.Vector3 = new Laya.Vector3(1,0,5);
+		let v2:Laya.Vector3 = new Laya.Vector3(5,0,1);
 		let out:Laya.Vector3 = new Laya.Vector3();
 		Laya.Vector3.multiply(v1,v2,out);
 
@@ -56,6 +56,9 @@ class Main {
 		let mout:Laya.Vector3 = new Laya.Vector3();
 		Laya.Vector3.multiply(v1,v2,mout);
 		console.log("Laya.Vector3.multiply(v1,v2,mout);::::",mout);
+		let mOut22:Laya.Vector3 = new Laya.Vector3();
+		Laya.Vector3.multiply(v2,v1,mOut22);
+		console.log("Laya.Vector3.multiply(v2,v1,mOut);:::",mOut22);
 
 		await SceneManager.instance.intoScene(SceneTag.joyDemo);
 	}
