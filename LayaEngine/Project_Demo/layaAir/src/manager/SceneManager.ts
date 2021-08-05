@@ -40,12 +40,13 @@ export default class SceneManager {
                 this._curScene = loadscene;
                 this._curSceneCtr = loadscene.addComponent(scene.ctr);
                 if (clearBefore && this._sceneHeap[this._curTag]) {
-                    this._sceneHeap[this._curTag].destroy();
+                    let scene = this._sceneHeap[this._curTag].removeSelf();
+                    scene.destroy();
                     delete this._sceneHeap[this._curTag];
                 }
                 this._curTag = tag;
-                loadscene.zOrder = -1;
                 Laya.stage.addChild(loadscene);
+                loadscene.zOrder = -100;
                 reslove(loadscene);
             }
 
@@ -99,7 +100,9 @@ export default class SceneManager {
         return new Promise<void>(async (reslove) => {
             if (this._sceneHeap[tag]) {
                 if (clearBefore) {
-                    this._sceneHeap[this._curTag].destroy();
+                    let scene = this._sceneHeap[this._curTag].removeSelf();
+                    scene.destroy();
+                    delete this._sceneHeap[this._curTag];
                 } else {
                     this._sceneHeap[this._curTag].active = false;
                 }
@@ -110,6 +113,8 @@ export default class SceneManager {
                 await this._loadScene(tag, clearBefore);
             }
             UIMng.instance._intoSceneCanvas(this._sceneConfig[tag].canvas);
+            let rootSprite = Laya.stage.getChildByName("root");
+            Laya.stage.addChild(rootSprite);
             reslove();
         });
     }

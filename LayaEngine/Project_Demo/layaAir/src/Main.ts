@@ -3,7 +3,6 @@ import { UIScene, UIZorder } from "./const/UIConst";
 import GameConfig from "./GameConfig";
 import SceneManager from "./manager/SceneManager";
 import UIMng from "./manager/UIMng";
-import { myMath } from "./util/myMath";
 import T3D from "./util/T3D";
 class Main {
 	constructor() {
@@ -43,7 +42,9 @@ class Main {
 		loadUI.close();
 		let joy = await UIMng.instance.openUIScene(UIScene.JoyStick,UIZorder.scene);
 		joy.zOrder = 100;
-		UIMng.instance.openUIScene(UIScene.SceneSelect,UIZorder.transition,SceneConfig.instance.sceneConfig,false);
+		let selectUI = await UIMng.instance.openUIScene(UIScene.SceneSelect,UIZorder.transition,SceneConfig.instance.sceneConfig,false);
+		selectUI.zOrder = UIZorder.transition;
+		console.log("onConfigLoaded Laya.stage: ",Laya.stage);
 	}
 
 	private async _loadScene3D(){

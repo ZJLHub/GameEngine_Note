@@ -21,7 +21,7 @@ public class AIForRotate : MonoBehaviour
         Vector3 AIForward = AI.forward;
         Vector3 dir = TargetTs.position - AI.position;
         Quaternion AIRotate =  Quaternion.Slerp(AI.rotation,
-        Quaternion.LookRotation(dir, AI.up),
+        Quaternion.LookRotation(dir, AI.up),//获取当前转向
         (1 / rotateTime) * Time.deltaTime
         );
         AI.rotation = AIRotate;

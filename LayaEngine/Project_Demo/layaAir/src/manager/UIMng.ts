@@ -34,8 +34,9 @@ export default class UIMng {
                 scene.name = name;
                 this._Adapter(scene);
                 scene.zOrder = zOrder;
-                // this.canvas.addChild(scene);
-                if(ifintoCanvas) this._canvasSceneDict[this._curCanvas].push(scene);
+                if(ifintoCanvas){
+                    this._canvasSceneDict[this._curCanvas].push(scene);
+                } 
                 if (!this._allowMulOpen[name] && scene.getChildByName(`allowMulOpen`)) this._allowMulOpen[name] = 1;//记录可多次打开的场景
                 reslove(scene);
             }));
@@ -90,7 +91,10 @@ export default class UIMng {
         if (canvas != this._curCanvas) {
             if (this._canvasSceneDict[this._curCanvas]) {
                 let sceneList = this._canvasSceneDict[this._curCanvas];
-                sceneList.forEach((scene) => { scene.close(); });
+                sceneList.forEach((scene) => { console.log("关闭scene::",scene.name);
+                delete this._sceneDict[scene.name];  
+                scene.close(); 
+                });
             }
         }
         this._curCanvas = canvas;

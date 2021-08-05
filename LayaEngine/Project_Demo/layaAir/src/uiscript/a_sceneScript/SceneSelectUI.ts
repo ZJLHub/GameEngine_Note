@@ -1,5 +1,4 @@
 import SceneConfig, { Scene3D2D, SceneTag } from "../../const/SceneConfig";
-import AudioManager from "../../manager/AudioManager";
 import SceneManager from "../../manager/SceneManager";
 import { ui } from "../../ui/layaMaxUI";
 
@@ -38,6 +37,7 @@ export default class SceneSelectUI extends ui.SceneSelectUI{
         this.mouseThrough = true;
         this.scenePanel.mouseThrough = false;
     }
+
 
     private async _onBox(k){
         await SceneManager.instance.intoScene(k);

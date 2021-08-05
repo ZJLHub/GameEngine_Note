@@ -1,3 +1,4 @@
+import AIForRotateController from "../controller/AIForRotateController";
 import RenderTextureDemoCtr from "../controller/RenderTextureDemoCtr";
 import TestSceneController from "../controller/TestSceneController";
 export type Scene3D2D = {
@@ -35,6 +36,11 @@ export default class SceneConfig {
             url:"subpackage/LayaScene_RenderTextureDemo/Conventional/RenderTextureDemo.ls",
             ctr:RenderTextureDemoCtr,
             canvas:SceneUICanvas.renderTexture
+        },
+        [SceneTag.AIRotate]:{
+            url:"subpackage/LayaScene_AIForRotate/Conventional/AIForRotate.ls",
+            ctr:AIForRotateController,
+            canvas:SceneUICanvas.AIRotate
         }
     }
 
