@@ -1,5 +1,6 @@
 import GameEvent, { GameEV } from "../const/GameConst";
 import L3D from "../util/L3D";
+import { myMath } from "../util/myMath";
 export type joyPoint = {
     x:number;
     y:number;
@@ -18,6 +19,9 @@ export default class JoyStick extends Laya.Script {
         this._joyPanel = this._root.getChildByName("JoyPanel") as Laya.Box;
         this._point = this._joyPanel.getChildByName("point") as Laya.Image;
         // console.log("JoyStick",this._root);
+        let testV:Laya.Vector3;
+        
+
     }
 
     onEnable() {

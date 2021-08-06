@@ -61,6 +61,15 @@ class Main {
 		Laya.Vector3.multiply(v2,v1,mOut22);
 		console.log("Laya.Vector3.multiply(v2,v1,mOut);:::",mOut22);
 
+
+		//cross才是叉乘~~~
+		let crossV:Laya.Vector3 = new Laya.Vector3();
+		Laya.Vector3.cross(v1,v2,crossV);
+		console.log("Laya.Vector3.cross(v1,v2,crossV);:::",crossV);
+		let crossV2:Laya.Vector3 = new Laya.Vector3();
+		Laya.Vector3.cross(v2,v1,crossV2);
+		console.log("Laya.Vector3.cross(v2,v1,crossV2);:::",crossV2);
+
 		await SceneManager.instance.intoScene(SceneTag.joyDemo);
 	}
 
