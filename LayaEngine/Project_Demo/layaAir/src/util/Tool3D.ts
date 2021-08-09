@@ -137,7 +137,7 @@ export default class Tool3D {
         var mb_val = Math.sqrt(mb.x * mb.x + mb.y * mb.y + mb.z * mb.z);
         var cosM = v1 / (ma_val * mb_val);
 
-        if (cosM < -1) cosM = -1;
+        if (cosM < -1) cosM = -1;//emmm，应该是怎么样都是不会超过+-1才对啊
         if (cosM > 1) cosM = 1;
 
         var angleAMB = Math.acos(cosM) * 180 / Math.PI;

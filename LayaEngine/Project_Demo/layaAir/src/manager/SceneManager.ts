@@ -47,6 +47,7 @@ export default class SceneManager {
                 this._curTag = tag;
                 Laya.stage.addChild(loadscene);
                 loadscene.zOrder = -100;
+                this._sceneHeap[tag] = loadscene;//2021/08/09 16:50  解决bug 场景不指定destory 原因竟然是没有指引,淦！
                 reslove(loadscene);
             }
 
@@ -100,8 +101,10 @@ export default class SceneManager {
         return new Promise<void>(async (reslove) => {
             if (this._sceneHeap[tag]) {
                 if (clearBefore) {
-                    let scene = this._sceneHeap[this._curTag].removeSelf();
-                    scene.destroy();
+                    // let scene = this._sceneHeap[this._curTag].removeSelf();
+                    // scene.destroy();
+                    console.log("intoScene  this._sceneHeap[this._curTag]",this._sceneHeap[this._curTag].name);
+                    this._sceneHeap[this._curTag].destroy();
                     delete this._sceneHeap[this._curTag];
                 } else {
                     this._sceneHeap[this._curTag].active = false;
@@ -113,8 +116,6 @@ export default class SceneManager {
                 await this._loadScene(tag, clearBefore);
             }
             UIMng.instance._intoSceneCanvas(this._sceneConfig[tag].canvas);
-            let rootSprite = Laya.stage.getChildByName("root");
-            Laya.stage.addChild(rootSprite);
             reslove();
         });
     }

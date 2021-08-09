@@ -1,4 +1,4 @@
-import SceneConfig, { Scene3D2D, SceneTag } from "../../const/SceneConfig";
+import { Scene3D2D } from "../../const/SceneConfig";
 import SceneManager from "../../manager/SceneManager";
 import { ui } from "../../ui/layaMaxUI";
 

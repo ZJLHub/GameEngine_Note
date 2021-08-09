@@ -44,7 +44,6 @@ class Main {
 		joy.zOrder = 100;
 		let selectUI = await UIMng.instance.openUIScene(UIScene.SceneSelect,UIZorder.transition,SceneConfig.instance.sceneConfig,false);
 		selectUI.zOrder = UIZorder.transition;
-		console.log("onConfigLoaded Laya.stage: ",Laya.stage);
 	}
 
 	private async _loadScene3D(){

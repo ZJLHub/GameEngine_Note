@@ -32,8 +32,17 @@ export default class T3D{
     
     /**获取向量的夹角，0<angle<180  */
     public static getAngle1(v1:Laya.Vector3,v2:Laya.Vector3){
-        let m1 = v1.x*v1.x + v1.y*v1.y + v1.z*v1.z;
-        
+        let m1 = Math.sqrt(v1.x*v1.x + v1.y*v1.y + v1.z*v1.z);
+        let m2 = Math.sqrt(v2.x**2 + v2.y**2 + v2.z**2);
+
+        let mul_v:number = v1.x*v2.x + v1.y*v2.y + v1.z*v2.z;//一个行矩阵  和  一个列矩阵相乘
+
+        let cosM = mul_v/(m1*m2);
+
+        let angle = Math.acos(cosM) * 180/Math.PI;//弧度转角度
+        return angle;
+
+
         
     }
 }
