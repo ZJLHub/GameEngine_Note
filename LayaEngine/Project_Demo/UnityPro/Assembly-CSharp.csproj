@@ -66,8 +66,10 @@
      <None Include="Assets\LayaAir3D\LayaShader\LayaShader\water\Water (Primary).shader" />
      <None Include="Assets\LayaAir3D\LayaShader\CGIncludes\LayaBlinnPhongFA.cginc" />
      <None Include="Assets\LayaAir3D\LayaTool\Configuration.xml" />
+     <None Include="Assets\Shader\LearnShader1.shader" />
      <None Include="Assets\LayaAir3D\LayaShader\CGIncludes\libs\LayaPBRUtil.cginc" />
      <None Include="Assets\LayaAir3D\LayaShader\LayaShader\LayaTrail.shader" />
+     <None Include="Assets\materials\Diffuse Texture.shader" />
      <None Include="Assets\LayaAir3D\LayaShader\LayaShader\Sky\LayaSkybox-Procedural.shader" />
      <None Include="Assets\LayaAir3D\LayaTool\English.xml" />
      <None Include="Assets\LayaAir3D\LayaShader\LayaShader\LayaBlinnPhong.shader" />
