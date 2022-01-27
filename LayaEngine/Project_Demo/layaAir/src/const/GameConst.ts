@@ -29,3 +29,19 @@ export default class GameEvent {
         return this._dispatcher.hasListener(ev);
     }
 }
+
+export const AttributeColor = {
+    "null" : "#39506a",
+    "fire" : "#e71a1a",
+    "dark" : "#5D41FF",
+}
+export enum AttributeColor11{
+    "null" = "#39506a",
+    "fire" = "#e71a1a",
+    "dark" = "#5D41FF",
+}
+export const AttributeColor22 = {
+    null : "#39506a",
+    fire : "#e71a1a",
+    dark : "#5D41FF",
+}

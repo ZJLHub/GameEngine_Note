@@ -1,3 +1,4 @@
+import { AttributeColor, AttributeColor11, AttributeColor22 } from "./const/GameConst";
 import SceneConfig, { SceneTag } from "./const/SceneConfig";
 import { UIScene, UIZorder } from "./const/UIConst";
 import GameConfig from "./GameConfig";
@@ -70,6 +71,14 @@ class Main {
 		console.log("Laya.Vector3.cross(v2,v1,crossV2);:::",crossV2);
 
 		await SceneManager.instance.intoScene(SceneTag.joyDemo);
+
+		let test = "fire";
+		console.log(
+		"AttributeColor[`${test}`]:::",AttributeColor[`${test}`],
+		"AttributeColor[test]::",AttributeColor[test],
+		"AttributeColor11[`${test}`]:::",AttributeColor11[`${test}`],
+		"AttributeColor11[test]::::::",AttributeColor11[test],
+		"AttributeColor22[test]:::",AttributeColor22[test]);
 	}
 
 

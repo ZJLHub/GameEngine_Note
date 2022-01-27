@@ -1,6 +1,13 @@
 .rpt2_cache/*
 bin/js/bundle.js
-.laya/
-.DS_Store
 release/*
 node_modules/*
+
+.DS_Store
+
+bin/js/
+bin/index.html
+bin/unpack.json
+bin/res/atlas/.rec
+laya/styles.xml
+src/ui/layaUI.max.all.ts
