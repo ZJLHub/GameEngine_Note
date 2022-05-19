@@ -74,6 +74,7 @@
      <None Include="Assets\LayaAir3D\LayaTool\English.xml" />
      <None Include="Assets\LayaAir3D\LayaShader\LayaShader\LayaBlinnPhong.shader" />
      <None Include="Assets\LayaAir3D\LayaShader\LayaShader\LayaUnlit.shader" />
+     <None Include="Assets\myShader\OnePlaneBSP.shader" />
      <None Include="Assets\LayaAir3D\LayaShader\LayaShader\LayaSpecularStandard.shader" />
      <None Include="Assets\LayaAir3D\LayaShader\CGIncludes\libs\LayaPBRStruct.cginc" />
      <None Include="Assets\LayaAir3D\LayaShader\CGIncludes\libs\LayaUtil.cginc" />
