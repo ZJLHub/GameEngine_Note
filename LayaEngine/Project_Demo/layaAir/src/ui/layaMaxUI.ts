@@ -12,6 +12,14 @@ export module ui {
         }
     }
     REG("ui.JoyStickUI",JoyStickUI);
+    export class LineMoveUI extends Laya.View {
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.loadScene("LineMove");
+        }
+    }
+    REG("ui.LineMoveUI",LineMoveUI);
     export class loadUI extends Laya.Scene {
 		public bg:Laya.Image;
 		public proYellow:Laya.Image;
@@ -23,6 +31,16 @@ export module ui {
         }
     }
     REG("ui.loadUI",loadUI);
+    export class mainSceneUI extends Laya.Scene {
+		public img:Laya.Image;
+		public test_tween_line:Laya.Image;
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.loadScene("mainScene");
+        }
+    }
+    REG("ui.mainSceneUI",mainSceneUI);
     export class RenderTextureShowUI extends Laya.Scene {
 		public rtImg:Laya.Image;
         constructor(){ super()}

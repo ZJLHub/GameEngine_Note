@@ -4,7 +4,7 @@
 */
 export default class ImgFilter extends Laya.Script {
 
-    
+    /**灰白滤镜 */
     public static grayingRole(roleImg: Laya.Image): void {
         let grayscaleMat: Array<number> =
             [
@@ -20,5 +20,70 @@ export default class ImgFilter extends Laya.Script {
 
         //恢复只需要将filters = null;即可
     }
-    
+
+    /**高斯模糊 */
+    public static gaussBlur(img: Laya.Image, radius?: number, sigma?: number) {
+        let text = img.source;
+        let pixes = text.getPixels(0, 0, text.width, text.height);
+        let height = text.height, width = text.width;
+        radius = radius || 5;
+        sigma = sigma || radius / 3;
+
+        let gaussEdge = radius * 2 + 1;
+
+        let gaussMatrix: number[] = [],
+            gaussSum = 0,
+            a = 1 / (2 * sigma * sigma * Math.PI),
+            b = -a * Math.PI;
+
+        for (let i = -radius; i <= radius; i++) {
+            for (let j = -radius; j <= radius; j++) {
+                let gxy = a * Math.exp((i * i + j * j) * b);
+                gaussMatrix.push(gxy);
+                gaussSum += gxy;
+            }
+        }
+        let gaussNum = (radius + 1) * (radius + 1);
+        for (let i = 0; i < gaussNum; i++) {
+            gaussMatrix[i] / gaussSum;
+        }
+
+        let handleEdge = (i, x, w) => {
+            let m = x + i;
+            if (m < 0) {
+                m = -m;
+            } else if (m >= w) {
+                m = w + i - x;
+            }
+            return m;
+        }
+        for (var x = 0; x < width; x++) {
+            for (var y = 0; y < height; y++) {
+                let r = 0, g = 0, b = 0;
+                for (var i = -radius; i <= radius; i++) {
+                    var m = handleEdge(i, x, width);
+                    for (var j = -radius; j <= radius; j++) {
+                        var mm = handleEdge(j, y, height);
+                        var currentPixId = (mm * width + m) * 4;
+                        var jj = j + radius;
+                        var ii = i + radius;
+                        r += pixes[currentPixId] * gaussMatrix[jj * gaussEdge + ii];
+                        g += pixes[currentPixId + 1] * gaussMatrix[jj * gaussEdge + ii];
+                        b += pixes[currentPixId + 2] * gaussMatrix[jj * gaussEdge + ii];
+                    }
+                }
+                var pixId = (y * width + x) * 4;
+
+                pixes[pixId] = ~~r;
+                pixes[pixId + 1] = ~~g;
+                pixes[pixId + 2] = ~~b;
+            }
+        }
+
+
+        let text2 = new Laya.Texture2D(width, height, Laya.TextureFormat.R8G8B8A8, false, false);
+        text2.setPixels(pixes);
+        img.source = new Laya.Texture(text2);
+    }
+
 }

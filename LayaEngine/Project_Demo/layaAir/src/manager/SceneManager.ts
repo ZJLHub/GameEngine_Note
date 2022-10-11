@@ -74,7 +74,6 @@ export default class SceneManager {
         if (!this._preparingScene[scene.url]) {
             let promise: Promise<Laya.Scene3D> = new Promise<Laya.Scene3D>((reslove) => {
                 Laya.loader.create(scene.url, Laya.Handler.create(this, (loadedScene: Laya.Scene3D) => {
-                    //TODO 其实原作者这里为什么要用数组存储呢 ，直接一对一 不就行了 , 不过现在还是以原来的方式编辑代码
                     if (!this._preparedScene[scene.url]) {
                         this._preparedScene[scene.url] = [loadedScene];
                     } else {
@@ -83,7 +82,7 @@ export default class SceneManager {
                     reslove(loadedScene);
                 }), progress, null, scene.constructParams, scene.propertyParams, priority);
             });
-            promise.then(() => {//神奇~~~~~~~~~ 又在这清空了  why~！！！！！！
+            promise.then(() => {
                 this._preparingScene[scene.url] = null;
             });
             this._preparingScene[scene.url] = promise;
@@ -103,7 +102,6 @@ export default class SceneManager {
                 if (clearBefore) {
                     // let scene = this._sceneHeap[this._curTag].removeSelf();
                     // scene.destroy();
-                    console.log("intoScene  this._sceneHeap[this._curTag]",this._sceneHeap[this._curTag].name);
                     this._sceneHeap[this._curTag].destroy();
                     delete this._sceneHeap[this._curTag];
                 } else {

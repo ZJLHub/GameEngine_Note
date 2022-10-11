@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"Scene",
-    "selectedBox":2,
-    "selecteID":12,
+    "selectedBox":7,
+    "selecteID":8,
     "searchKey":"Scene",
     "props":{"zOrder":100,"width":750,"sceneColor":"#000000","height":1334},
     "nodeParent":-1,
@@ -21,13 +21,14 @@
             "props":{"top":0,"right":0,"name":"JoyLayer","left":0,"bottom":0},
             "nodeParent":2,
             "label":"JoyLayer",
-            "isOpen":false,
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":7,
             "child":[
                 {
+                    "x":30,
                     "type":"Box",
                     "searchKey":"Box,JoyListenBox",
                     "props":{"y":0,"x":0,"top":0,"right":0,"name":"JoyListenBox","left":0,"bottom":0,"bgColor":"#ffa3a1","alpha":0.1},
@@ -42,6 +43,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Box",
                     "searchKey":"Box,JoyPanel",
                     "props":{"y":1017,"x":375,"width":250,"name":"JoyPanel","height":250,"centerX":0,"bottom":200,"anchorY":0.5,"anchorX":0.5},
@@ -54,6 +56,7 @@
                     "compId":4,
                     "child":[
                         {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image",
                             "props":{"y":0,"x":0,"width":250,"skin":"test/circleAxi.png","height":250},
@@ -67,6 +70,7 @@
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image,point",
                             "props":{"y":125,"x":125,"skin":"test/circlePoint.png","name":"point","anchorY":0.5,"anchorX":0.5},
@@ -81,6 +85,7 @@
                         }]
                 },
                 {
+                    "x":30,
                     "type":"Script",
                     "switchAble":true,
                     "source":"src/uiscript/JoyStick.ts",

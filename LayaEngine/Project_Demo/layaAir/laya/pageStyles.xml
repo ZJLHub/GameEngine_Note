@@ -4,4 +4,6 @@
    <item name="load.scene" props="" ifExport="分离模式" aName=""/>
    <item name="SceneSelect.scene" props="" ifExport="分离模式" aName=""/>
    <item name="RenderTextureShow.scene" props="" ifExport="分离模式" aName=""/>
+   <item name="mainScene.scene" props="" ifExport="分离模式" aName=""/>
+   <item name="LineMove.scene" props="" ifExport="分离模式" aName=""/>
 </page>

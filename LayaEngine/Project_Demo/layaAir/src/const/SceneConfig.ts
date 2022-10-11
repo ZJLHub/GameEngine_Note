@@ -1,4 +1,6 @@
 import AIForRotateController from "../controller/AIForRotateController";
+import LayaTransform from "../controller/LayaTransform";
+import LineMoveCtr from "../controller/LineMove/LineMoveCtr";
 import RenderTextureDemoCtr from "../controller/RenderTextureDemoCtr";
 import TestSceneController from "../controller/TestSceneController";
 export type Scene3D2D = {
@@ -11,7 +13,9 @@ export type Scene3D2D = {
 export enum SceneTag{
     joyDemo = 0,
     AIRotate = 1,//AI 面向目标点
-    RenderTextureDemo = 2,//rt测试
+    RenderTextureDemo = 2,//rt测试 
+    LayaTransform = 3,//再次测试旋转
+    LineMove = 4,
 
 }
 export enum SceneUICanvas{
@@ -19,6 +23,8 @@ export enum SceneUICanvas{
     joyDemoCanvas = "joyDemoCanvas",
     AIRotate = "AIRotate",
     renderTexture = "renderTexture",
+    LineMove = "LineMove",
+
 }
 export default class SceneConfig {
     private static _instance:SceneConfig;
@@ -41,7 +47,17 @@ export default class SceneConfig {
             url:"subpackage/LayaScene_AIForRotate/Conventional/AIForRotate.ls",
             ctr:AIForRotateController,
             canvas:SceneUICanvas.AIRotate
-        }
+        },
+        [SceneTag.LayaTransform]:{
+            url:"subpackage/LayaScene_LayaTransform/Conventional/LayaTransform.ls",
+            ctr:LayaTransform,
+            canvas:SceneUICanvas.default
+        },
+        [SceneTag.LineMove]:{
+            url:"subpackage/LayaScene_LineMove/Conventional/LineMove.ls",
+            ctr:LineMoveCtr,
+            canvas:SceneUICanvas.LineMove
+        },
     }
 
     public get sceneConfig(){

@@ -1,6 +1,5 @@
 import GameEvent, { GameEV } from "../const/GameConst";
 import L3D from "../util/L3D";
-import { myMath } from "../util/myMath";
 export type joyPoint = {
     x:number;
     y:number;
@@ -19,8 +18,6 @@ export default class JoyStick extends Laya.Script {
         this._joyPanel = this._root.getChildByName("JoyPanel") as Laya.Box;
         this._point = this._joyPanel.getChildByName("point") as Laya.Image;
         // console.log("JoyStick",this._root);
-        let testV:Laya.Vector3;
-        
 
     }
 
@@ -39,13 +36,14 @@ export default class JoyStick extends Laya.Script {
         // let e = Laya.MouseManager.instance.mouseX;
         this._joyPanel.x = Laya.MouseManager.instance.mouseX;
         this._joyPanel.y = Laya.MouseManager.instance.mouseY;
+        GameEvent.ev(GameEV.Joy_Down,null);
     }
     private _onMouseMove() {
         let jp = this._getJoyPoint();
         this._point.x = -jp.x + 125;
         this._point.y = -jp.y + 125;
         // console.log("jp:::",jp);
-        Laya.stage.event(GameEV.Joy_Move);
+        // Laya.stage.event(GameEV.Joy_Move);
         GameEvent.ev(GameEV.Joy_Move,jp);
     }
     private _onMouseUp() {

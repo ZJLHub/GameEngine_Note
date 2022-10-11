@@ -1,0 +1,14 @@
+D .
+D common
+P 85AF706C 提示语底板02.png
+D load
+R 57C699AD 加载条01.png
+R 503F8F20 加载条02.png
+R D5C0CCED 加载条底板.png
+P 163502C5 忠告.png
+P 93A44E31 正在加载....png
+R 6F89E7B0 背景.jpg
+R D8366437 超级美妆秀.png
+D test
+P 0991334F circleAxi.png
+P BBA06A33 circlePoint.png

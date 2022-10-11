@@ -61,6 +61,7 @@
      <Compile Include="Assets\LayaAir3D\LayaShader\ShaderGUI\PBRStandardShaderGUI.cs" />
      <Compile Include="Assets\LayaAir3D\LayaShader\ShaderGUI\StandardSpecularShaderGUI.cs" />
      <Compile Include="Assets\Scripts\AIForRotate.cs" />
+     <Compile Include="Assets\Scripts\laya_transform\face_a_to_b.cs" />
      <None Include="Assets\LayaAir3D\LayaShader\LayaShader\LayaMeshEffect.shader" />
      <None Include="Assets\LayaAir3D\LayaShader\CGIncludes\LayaBlinnPhongFB.cginc" />
      <None Include="Assets\LayaAir3D\LayaShader\LayaShader\water\Water (Primary).shader" />
@@ -82,6 +83,7 @@
      <None Include="Assets\LayaAir3D\LayaShader\LayaShader\LayaStandard.shader" />
      <None Include="Assets\LayaAir3D\LayaShader\LayaShader\LayaLine.shader" />
      <None Include="Assets\LayaAir3D\LayaTool\Chinese.xml" />
+     <None Include="Assets\myShader\RimLight.shader" />
      <None Include="Assets\LayaAir3D\LayaShader\LayaShader\Sky\LayaSkybox-Cubed.shader" />
      <None Include="Assets\LayaAir3D\LayaShader\LayaShader\Sky\LayaSkyboxPanoramic.shader" />
      <None Include="Assets\LayaAir3D\LayaShader\CGIncludes\LayaStandardcore.cginc" />

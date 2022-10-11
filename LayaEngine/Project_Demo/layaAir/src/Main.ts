@@ -3,6 +3,7 @@ import SceneConfig, { SceneTag } from "./const/SceneConfig";
 import { UIScene, UIZorder } from "./const/UIConst";
 import GameConfig from "./GameConfig";
 import SceneManager from "./manager/SceneManager";
+import TestManager from "./manager/TestManager";
 import UIMng from "./manager/UIMng";
 import T3D from "./util/T3D";
 class Main {
@@ -48,8 +49,8 @@ class Main {
 	}
 
 	private async _loadScene3D(){
-		let v1:Laya.Vector3 = new Laya.Vector3(1,0,5);
-		let v2:Laya.Vector3 = new Laya.Vector3(5,0,1);
+		let v1:Laya.Vector3 = new Laya.Vector3(1,0,1);
+		let v2:Laya.Vector3 = new Laya.Vector3(1,0,3);
 		let out:Laya.Vector3 = new Laya.Vector3();
 		Laya.Vector3.multiply(v1,v2,out);
 
@@ -71,6 +72,7 @@ class Main {
 		console.log("Laya.Vector3.cross(v2,v1,crossV2);:::",crossV2);
 
 		await SceneManager.instance.intoScene(SceneTag.joyDemo);
+		await UIMng.instance.openUIScene(UIScene.mainScene,UIZorder.scene);
 
 		let test = "fire";
 		console.log(
@@ -79,6 +81,29 @@ class Main {
 		"AttributeColor11[`${test}`]:::",AttributeColor11[`${test}`],
 		"AttributeColor11[test]::::::",AttributeColor11[test],
 		"AttributeColor22[test]:::",AttributeColor22[test]);
+
+
+		let vec1 = new Laya.Vector3(0,0,1);
+        let vec2 = new Laya.Vector3(1,0,1);
+        let vec3 = new Laya.Vector3(-1,0,1);
+        console.log(`T3D.getAngle1(v1,v2);::`,T3D.getAngle1(vec1,vec2),`T3D.getAngle1(v1,v2)`,T3D.getAngle1(vec1,vec3)); 
+
+		
+		let mng:Laya.Sprite = new Laya.Sprite();
+		mng.addComponent(TestManager);
+		Laya.stage.addChild(mng);
+		Laya.timer.loop(1000,this,this._timer);
+
+		
+		console.log(`Math.sqrt(4):::`,Math.sqrt(4),`Math.pow(4,-2)::`,Math.pow(4,-2));
+
+		// console.log(`Math.exp( 4 )::`,Math.exp(2),`Math.E:::`,Math.E,`Math.E*Math.E:::`,Math.E*Math.E); //Math.exp(x) 返回自然数常数e（约等于2.7）的X次幂
+	}
+
+	private _play_time:number = 0;
+	private _timer(){
+		this._play_time+=1;
+		TestManager.ins.gmae_timer();
 	}
 
 

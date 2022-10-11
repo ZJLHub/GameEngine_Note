@@ -20,7 +20,7 @@
     <IgnoreNotActiveGameObject>False</IgnoreNotActiveGameObject>
     <OptimizeGameObject>False</OptimizeGameObject>
     <BatchMade>False</BatchMade>
-    <OtherSetting>False</OtherSetting>
+    <OtherSetting>True</OtherSetting>
     <CoverOriginalFile>True</CoverOriginalFile>
     <CustomizeDirectory>False</CustomizeDirectory>
     <CustomizeDirectoryName>
@@ -156,9 +156,7 @@
     <ScrollPositionY>0</ScrollPositionY>
   </config5>
   <language>1</language>
-  <time>1652773907</time>
-  <saveAcount>
-  </saveAcount>
-  <savePassWorld>
-  </savePassWorld>
+  <time>1663570612</time>
+  <saveAcount>18316982442</saveAcount>
+  <savePassWorld>zjl19960119</savePassWorld>
 </LayaExportSetting>

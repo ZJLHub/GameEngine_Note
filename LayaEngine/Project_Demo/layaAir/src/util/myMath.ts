@@ -249,58 +249,46 @@ export class myMath {
         return arrOut;
     }
 
-    /**随机权重 */
-    public static RandomWeight(weigthArr: any) {
-        let randomConfig = weigthArr;
+    // /**随机权重 */
+    // public static RandomWeight(weigthArr: any) {
+    //     let randomConfig = weigthArr;
 
-        let randomList = [];
-        for (let i in randomConfig) {
-            for (let j = 0; j < randomConfig[i].rate; j++) {
-                randomList.push(i);
-            }
-        }
-        let randomValue = randomList[Math.floor(Math.random() * randomList.length)];
+    //     let randomList = [];
+    //     for (let i in randomConfig) {
+    //         for (let j = 0; j < randomConfig[i].rate; j++) {
+    //             randomList.push(i);
+    //         }
+    //     }
+    //     let randomValue = randomList[Math.floor(Math.random() * randomList.length)];
 
-        // if (curVal != 0) {
-        //     while (randomValue == curVal) {
-        //         randomValue = randomList[Math.floor(Math.random() * randomList.length)];
-        //     }
-        // }
-        return randomValue;
-    }
+    //     // if (curVal != 0) {
+    //     //     while (randomValue == curVal) {
+    //     //         randomValue = randomList[Math.floor(Math.random() * randomList.length)];
+    //     //     }
+    //     // }
+    //     return randomValue;
+    // }
 
-    /**随机权重 */
-    public static RandomWeight2(weigthArr: any) {
-        let randomConfig = weigthArr;
-        let randomList = [];
-        for (let i = 0; i < randomConfig.length; i++) {
-            for (let j = 0; j < randomConfig[i].rate; j++) {
-                randomList.push(randomConfig[i]);
-            }
-        }
-        let randomValue = randomList[Math.floor(Math.random() * randomList.length)];
+    // /**随机权重 */
+    // public static RandomWeight2(weigthArr: any) {
+    //     let randomConfig = weigthArr;
+    //     let randomList = [];
+    //     for (let i = 0; i < randomConfig.length; i++) {
+    //         for (let j = 0; j < randomConfig[i].rate; j++) {
+    //             randomList.push(randomConfig[i]);
+    //         }
+    //     }
+    //     let randomValue = randomList[Math.floor(Math.random() * randomList.length)];
 
-        // if (curVal != 0) {
-        //     while (randomValue == curVal) {
-        //         randomValue = randomList[Math.floor(Math.random() * randomList.length)];
-        //     }
-        // }
-        return randomValue;
-    }
+    //     // if (curVal != 0) {
+    //     //     while (randomValue == curVal) {
+    //     //         randomValue = randomList[Math.floor(Math.random() * randomList.length)];
+    //     //     }
+    //     // }
+    //     return randomValue;
+    // }
 
-    /**判断是否是今日时间 */
-    public static isToday2(time: string): boolean {
-        let _date: Date = new Date();
-        let _month: number = _date.getMonth() + 1;
-        let _day: number = _date.getDate();
-        let _curTime = `${_month}${_day}`;
-        let _Time: string = time; //服务器时间
-        if (_curTime == _Time) {
-            return true
-        } else {
-            return false;
-        }
-    }
+
 
 
     // public static log(tag: string, ...args): void {
@@ -308,6 +296,85 @@ export class myMath {
     //         console.log(tag,args)
     //     }
     // }
+
+    /**获取随机权重
+     * @return item.key 
+     * */
+    public static RandomWeight(weight_item: { key: string, weight: number }[]) {
+        let data: { [key: string]: number } = {}
+        weight_item.forEach((item) => { data[item.key] = item.weight });
+        let get_key = this.RandomWeight3(data);
+        return get_key;
+    }
+
+    /**
+     * 随机权重 
+     * @param weigthArr {[item:string]:number} item:是随机项  存值为权重值(int)，并且不可为负数
+     * @returns 返回查询的key
+     * @说明
+     * let testWeigth:{[item:string]:number} = {
+            'zjl':1000,
+            's':1,
+            'dsb':50,
+            'dsg':50
+        }
+        myMath.RandomWeight3(testWeigth);
+     * 
+        @returns 返回key键
+    */
+    public static RandomWeight3(weigthArr: { [item: string]: number }): string {
+        let items: string[] = [];
+        let weigths: number[] = [];
+        let weightMax: number = 0;
+        for (let k in weigthArr) {
+            items.push(k);
+            let value = weigthArr[k];
+            weigths.push(value);
+            weightMax += value;
+        }
+        weightMax = Math.floor(weightMax);
+        let rand: number = Math.floor(Math.random() * weightMax);
+        //查询所属item
+        let searchValueSum: number = 0;
+        for (let i = 0; i < items.length; i++) {
+            searchValueSum += weigths[i];
+            if (rand <= searchValueSum) {
+                let key = items[i];
+                return key;
+            }
+        }
+        return null;
+    }
+
+    /**
+         * 返回随机权重后的item
+         * @param weightObj {[itemKey:string]:{weight:100,...}}
+         * 
+         */
+    public static RandomWeight4(weightObj: any) {
+        let items: string[] = [];
+        let weigths: number[] = [];
+        let weightMax: number = 0;
+        for (let k in weightObj) {
+            items.push(k);
+            let value = weightObj[k].weight;
+            weigths.push(value);
+            weightMax += value;
+        }
+        weightMax = Math.floor(weightMax);
+        let rand: number = Math.floor(Math.random() * weightMax);
+        //查询所属item
+        let searchValueSum: number = 0;
+        for (let i = 0; i < items.length; i++) {
+            searchValueSum += weigths[i];
+            if (rand <= searchValueSum) {
+                let key = items[i];
+                let item = weightObj[key]
+                return item;
+            }
+        }
+        return null;
+    }
 
     public static compare(property) {
         return function (a, b) {
@@ -317,21 +384,11 @@ export class myMath {
         }
     }
 
+    //#region ·······················时间相关···········································
     public static getTime(date_str) {
         let timestrip: Date = new Date(date_str)
         if (Number.isNaN(timestrip.getTime())) timestrip = new Date(date_str.replace(/-/g, '/'))
         return timestrip;
-    }
-
-    public static checkName(str: string, index: number) {
-        let _len: number = str.length;
-        let _s: string = "";
-        if (_len > 5) {
-            _s = str.substring(0, index) + "...";
-        } else {
-            _s = str;
-        }
-        return _s;
     }
 
     /**获得本周的开端日期 */
@@ -390,6 +447,7 @@ export class myMath {
         }
         return (myyear + "-" + mymonth + "-" + myweekday);
     }
+    //#endregion ·······················时间相关········································
 
     public static angleToRad(angle: number) {//角度转弧度
         return Math.PI / 180 * angle;
@@ -412,13 +470,5 @@ export class myMath {
             return value > max ? max : value;
         }
     }
-
-    /***
-     * 将传入的10进制的数值 转变成 XX进制的值的字符串
-     */
-
-    /**
-     * 将XX进制的字符串  转换为 10进制的值
-     */
 
 }

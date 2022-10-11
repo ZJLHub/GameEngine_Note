@@ -4,6 +4,7 @@ export enum UIScene{
     JoyStick = "JoyStick",
     SceneSelect = "SceneSelect",
     RenderTextureShow = "RenderTextureShow",
+    mainScene = "mainScene",
 
 }
 
